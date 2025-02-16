@@ -1,0 +1,9 @@
+server:
+  port: 8084  # Porta per evitare conflitti
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092  # Kafka deve essere in esecuzione
+    consumer:
+      group-id: game-group
+      auto-offset-reset: earliest
