@@ -1,4 +1,4 @@
-package it.fanta.engine.data_service;
+package it.fanta.engine.dataService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
