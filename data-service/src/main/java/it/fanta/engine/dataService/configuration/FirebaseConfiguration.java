@@ -1,30 +1,26 @@
 package it.fanta.engine.dataService.configuration;
 
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.cloud.FirestoreClient;
-
-@Configuration
+@Component
 public class FirebaseConfiguration {
+
+	//Legge la proprietà dal file application.properties
+	@Value("${firebase.config.path}") 
+    private String configPath;
 	
-    @Bean
-    public Firestore firestore() throws IOException {
-        FileInputStream serviceAccount = new FileInputStream("src/main/resources/firebase-config.json");
-
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .build();
-
-        FirebaseApp.initializeApp(options);
-        return FirestoreClient.getFirestore();
-    }
+	public FileInputStream loadServiceAccount() {
+		 try {
+			FileInputStream serviceAccount = new FileInputStream(configPath);
+			
+			return serviceAccount;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
-

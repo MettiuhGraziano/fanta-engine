@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8080  # API Gateway in ascolto sulla porta 8080
 
 spring:
   cloud:
@@ -10,7 +10,22 @@ spring:
           predicates:
             - Path=/auth/**
 
-        - id: data-service
+        - id: user-service
           uri: http://localhost:8082
           predicates:
+            - Path=/users/**
+
+        - id: data-service
+          uri: http://localhost:8083
+          predicates:
             - Path=/data/**
+
+        - id: game-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/games/**
+
+        - id: notification-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/notifications/**

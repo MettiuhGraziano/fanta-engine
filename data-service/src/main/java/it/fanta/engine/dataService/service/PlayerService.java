@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
@@ -16,8 +17,9 @@ import it.fanta.engine.dataService.model.Player;
 @Service
 public class PlayerService {
 	
-    private final Firestore firestore;
+    private Firestore firestore;
 
+    @Autowired
     public PlayerService(Firestore firestore) {
         this.firestore = firestore;
     }

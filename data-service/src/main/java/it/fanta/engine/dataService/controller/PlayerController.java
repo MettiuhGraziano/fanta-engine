@@ -2,6 +2,7 @@ package it.fanta.engine.dataService.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,9 @@ import it.fanta.engine.dataService.service.PlayerService;
 @RequestMapping("/players")
 public class PlayerController {
 	
-    private final PlayerService playerService;
+    private PlayerService playerService;
 
+    @Autowired
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
     }
